@@ -1,0 +1,142 @@
+/*
+
+Lightest
+#dddeff
+.first-color { 
+	background: #b7b9f4; 
+}
+.second-color { 
+	background: #5254d8; 
+}
+.third-color { 
+	background: #192294; 
+}
+.fourth-color { 
+	background: #000278; 
+*/
+
+body{
+  background-color: #5254d8;
+}
+.auth-container {
+  display: flex;
+  flex-direction: column; /* stack elements vertically */
+  align-items: center;    /* center horizontally */
+  width: fit-content;     /* shrink to content */
+  max-width: 400px;       /* optional max width */
+  margin: 200px auto;     /* center container on page */
+  padding: 50px;
+  background-color: #dddeff;
+  border-radius: 12px;
+  box-shadow: 0px 0px 20px 0px rgb(57, 57, 57);
+}
+
+.auth-container h2 {
+  margin-bottom: 50px;
+  font-size: 30px;
+  color: #5254d8;
+  font-family: 'Segoe UI', sans-serif;
+
+}
+
+.auth-container input {
+  width: 300px;           /* smaller than container to center visually */
+  max-width: 400px;     /* optional */
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+  display: block;       /* ensures width is respected */
+  text-align: left;     /* keeps text inside input aligned left */
+}
+
+.auth-container input:focus {
+  border-color: #4a90e2;
+}
+
+.auth-container button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #5254d8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.auth-container button[type="submit"]:hover {
+  background-color: #6668ea;
+}
+
+.auth-container p button {
+  background: none;
+  border: none;
+  color: #5254d8;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+  margin-left: 5px;
+}
+
+.auth-container p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.auth-container p.error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+.logos {
+  width: 30px;   /* smaller width */
+  margin-left: 10px; /* optional spacing from text */
+  margin-bottom: 4px;
+}
+
+
+.social-login {
+  display: flex;          /* side by side */
+  flex-direction: row;    /* make them horizontal */
+  gap: 10px;              /* spacing between buttons */
+  margin-top: 20px;
+  width: 100%;            /* full width container */
+}
+
+.social-login button {
+  flex: 1;                /* each button takes half width */
+  display: flex;          /* center contents */
+  justify-content: center;
+  align-items: center;
+  gap: 8px;               /* spacing between text and logo */
+  height: 60px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+  padding: 20px;
+}
+
+.apple-button{
+  background-color: black;
+  color: white;
+}
+.apple-button:hover{
+  background-color: rgb(41, 41, 41);
+}
