@@ -94,6 +94,7 @@ function ShoppingList({user, onLogout}){
                     name={product.name}
                     price={product.price}
                     store={product.store}
+                    image={product.image}
                      />
                 ))}
             </div>

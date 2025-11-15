@@ -20,11 +20,11 @@ body{
 }
 .auth-container {
   display: flex;
-  flex-direction: column; /* stack elements vertically */
-  align-items: center;    /* center horizontally */
-  width: fit-content;     /* shrink to content */
-  max-width: 400px;       /* optional max width */
-  margin: 200px auto;     /* center container on page */
+  flex-direction: column; 
+  align-items: center;    
+  width: fit-content;    
+  max-width: 400px;       
+  margin: 200px auto;  
   padding: 50px;
   background-color: #dddeff;
   border-radius: 12px;
@@ -40,8 +40,8 @@ body{
 }
 
 .auth-container input {
-  width: 300px;           /* smaller than container to center visually */
-  max-width: 400px;     /* optional */
+  width: 300px;       
+  max-width: 400px;     
   padding: 12px 15px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -49,8 +49,8 @@ body{
   font-size: 16px;
   outline: none;
   transition: border-color 0.2s;
-  display: block;       /* ensures width is respected */
-  text-align: left;     /* keeps text inside input aligned left */
+  display: block;       
+  text-align: left;     
 }
 
 .auth-container input:focus {
@@ -103,26 +103,26 @@ body{
 
 
 .logos {
-  width: 30px;   /* smaller width */
-  margin-left: 10px; /* optional spacing from text */
+  width: 30px;   
+  margin-left: 10px; 
   margin-bottom: 4px;
 }
 
 
 .social-login {
-  display: flex;          /* side by side */
-  flex-direction: row;    /* make them horizontal */
-  gap: 10px;              /* spacing between buttons */
+  display: flex;         
+  flex-direction: row;    
+  gap: 10px;              
   margin-top: 20px;
-  width: 100%;            /* full width container */
+  width: 100%;           
 }
 
 .social-login button {
-  flex: 1;                /* each button takes half width */
-  display: flex;          /* center contents */
+  flex: 1;               
+  display: flex;         
   justify-content: center;
   align-items: center;
-  gap: 8px;               /* spacing between text and logo */
+  gap: 8px;              
   height: 60px;
   border-radius: 8px;
   border: none;
@@ -145,7 +145,7 @@ body{
 
 
 .page-container {
-  width: 670px;             /* clean card size */
+  width: 670px;             
   min-height: 500px;
   background: #ffffff;
   margin: 60px auto;
@@ -161,9 +161,9 @@ body{
 }
 
 .page-title {
-  align-self: flex-start;    /* aligns left inside the flex container */
-  margin-top: 100px;          /* space from the top */
-  margin-left: 30px;         /* space from left edge of container */
+  align-self: flex-start;   
+  margin-top: 100px;         
+  margin-left: 30px;        
   font-size: 30px;          
   color: #333;
     font-family: 'Segoe UI', sans-serif; 
@@ -171,11 +171,11 @@ body{
 
 .top-bar {
   width: 100%;
-  height: 55px;                     /* nav bar height */
-  background-color: white;        /* your theme color */
-  border-radius: 12px 12px 0 0;     /* round top corners like a phone */
+  height: 55px;                     
+  background-color: white;       
+  border-radius: 12px 12px 0 0;     
   display: flex;
-  justify-content: space-between;   /* left + right icons */
+  justify-content: space-between;   
   align-items: center;
   padding: 0 15px;
   box-sizing: border-box;
@@ -186,7 +186,7 @@ body{
   background: none;
   border: none;
   font-size: 26px;
-  color: white;                     /* icon color */
+  color: white;                    
   cursor: pointer;
   margin-top: 40px;
   padding: 10px;
@@ -230,25 +230,41 @@ body{
 }
 
 .add-button:hover {
-  transform: translateX(-50%) scale(1.12);  /* grow smoothly */
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); /* stronger shadow */
-  background-color: #6668ea;                 /* optional */
+  transform: translateX(-50%) scale(1.12); 
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); 
+  background-color: #6668ea;                 
 }
 
 
 
 .items-container {
   display: flex;
-  overflow-x: auto;       /* horizontal scroll */
+  overflow-x: auto;      
   gap: 10px;
   padding: 10px;
   scroll-snap-type: x mandatory;
 }
 
 .product-card {
-  min-width: 200px;       /* width of each card */
-  flex-shrink: 0;
-  scroll-snap-align: start;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 10px;
+  width: 220px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.product-price, .product-store, .product-barcode {
+  font-size: 14px;
+  color: #555;
 }
 
 .add-option-button {
@@ -274,9 +290,9 @@ body{
 }
 
 .add-option-button:hover {
-  transform: scale(1.12);              /* gets bigger smoothly */
-  box-shadow: 0px 0px 20px 2px #9597ff; /* stronger shadow */
-  background-color: #6668ea;           /* optional: lighter color */
+  transform: scale(1.12);             
+  box-shadow: 0px 0px 20px 2px #9597ff; 
+  background-color: #6668ea;          
 }
 
 .add-options {
@@ -294,4 +310,92 @@ body{
     opacity: 1;
     transform: scale(1);
   }
+}
+
+.modal-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Segoe UI', sans-serif;
+  width: 85%;
+  max-width: 380px;
+
+  background: #5254d8; 
+  color: white; 
+  border-radius: 18px;
+  padding: 30px 25px; 
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+
+  z-index: 60;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  animation: popup 0.25s ease-out;
+}
+
+.modal-close {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%; 
+  background: transparent; 
+  color: white;
+  font-size: 35px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.modal-close:hover {
+  background-color: rgba(255, 255, 255, 0.25); 
+  transform: scale(1.1); 
+}
+
+.modal-form {
+  width: 100%; 
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+  align-items: center; 
+}
+
+.modal-form input {
+  width: 80%; 
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #222;
+  text-align: left;
+}
+
+.submit-btn {
+  width: 20%;
+  padding: 8px;
+  border-radius: 12px;
+  background-color: #fff;
+  color: #5254d8;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #eee;
+}
+
+
+.product-card{
+  background-color: #f2f2ff;
+  font-family: 'Segoe UI', sans-serif;
+
 }
