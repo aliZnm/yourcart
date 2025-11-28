@@ -2,7 +2,7 @@ import { auth, googleProvider, appleProvider } from "../firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 
-function LoginForm({setUser, toggleForm}){
+export default function LoginForm({setUser, toggleForm}){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -62,4 +62,4 @@ function LoginForm({setUser, toggleForm}){
         </div>
     );
 }
-export default LoginForm;
+

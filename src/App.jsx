@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import LoginForm from "./components/loginForm";
 import SignupForm from "./components/SignupForm";
-import LoginForm from "./components/LoginForm";
 import ShoppingList from "./components/ShoppingList";
 import './App.css';
 
-const devMode = false;
+const devMode = true;
 
 function App() {
   const [user, setUser] = useState(null);
