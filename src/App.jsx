@@ -16,16 +16,18 @@ useEffect(() =>{
   }
 }, []);
   return(
-    <div className="app-container">
-      {user ? (
-        <ShoppingList user={user} 
-        onLogout={() => setUser(null)}/> 
-      ) : showLogin ? (
-        <LoginForm setUser={setUser} toggleForm={() => setShowLogin(false)} />
-      ) : (
-        <SignupForm setUser={setUser} toggleForm={() => setShowLogin(true)} />
-      )}
-    </div>
+    <>
+
+        <div className="app-container">
+          {user ? (
+            <ShoppingList user={user} onLogout={()=> setUser(null)} />
+          ) : showLogin ? (
+            <LoginForm setUser={setUser} toggleForm={() => setShowLogin(false)} />
+          ) : (
+            <SignupForm setUser={setUser} toggleForm={()=> setShowLogin(true)} />
+          )}
+        </div>
+    </>
   );
 }
 

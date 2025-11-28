@@ -1,4 +1,3 @@
-import TopBar from "./TopBar";
 import AddButton from "./AddButton";
 import { useState } from "react";
 import BarcodeScanner from "react-qr-barcode-scanner";
@@ -62,7 +61,6 @@ function ShoppingList({user, onLogout}){
     return(
 
         <div className="page-container">
-            <TopBar onLogout={onLogout} onSettings={() => console.log("Settings clicked")}/>
 
             <h2 className="page-title">Shopping List</h2>
 
