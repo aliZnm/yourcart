@@ -37,7 +37,7 @@ body{
 }
 
 .navbar-title{
-  color: rgb(121, 121, 171); /*#7979ab*/
+  color: rgb(151, 151, 199); /*#7979ab hover: #a5a5d3*/
   font-size: 28px;
 }
 
@@ -50,10 +50,17 @@ body{
   cursor: pointer;
 }
 
-.navbar-account-img {
+.navbar-account-icon {
   width: 37px;
+  height: 37px;
+  background-image: url("src/assets/account-logo1.png");
+  background-size: cover;
+  transition: background-image 0.4s ease;
 }
 
+.navbar-account-btn:hover .navbar-account-icon{
+  background-image: url("src/assets/account-logo2.png");;
+}
 
 .navbar-slide-panel {
   position: fixed;
@@ -61,7 +68,7 @@ body{
   right: 0;
   width: 260px;
   height: 100vh;
-  background: rgba(255,255,255,0.12);
+  background: rgba(121,121,171,0.3);
   backdrop-filter: blur(12px);
   padding: 20px;
   z-index: 2000;

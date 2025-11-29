@@ -11,7 +11,7 @@ export default function Navbar({user, onLogout}){
             <div className="navbar-title">YourCart</div>
 
             <button className="navbar-account-btn" onClick={()=> setMenuOpen(true)}>
-                <img src="src/assets/account-logo1.png" className="navbar-account-img"/>
+                <div className="navbar-account-icon"/>
             </button>
         </header>
 
@@ -22,7 +22,6 @@ export default function Navbar({user, onLogout}){
 
         <div className={`navbar-slide-panel ${menuOpen ? "open" : ""}`}>
             <h2>Account</h2>
-            {user && <p className="email">{user.displayName || user.email}</p>}
 
             <button className="slide-btn" onClick={onLogout}>
                 Logout
