@@ -1,105 +1,123 @@
 import AddButton from "./AddButton";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BarcodeScanner from "react-qr-barcode-scanner";
 import ProductCard from "./productCard";
 import NewProductForm from "./NewProductForm";
-//NewsProductForm
-function ShoppingList({user, onLogout}){
-    const [products, setProducts] = useState([]);
-    const [scanning, setScanning] = useState(false);
-    const [newProductBarcode, setNewProductBarcode] = useState(null);
-    const [showAddOptions, setAddOptions] = useState(false);
+import { db } from "../firebase"; 
+import { collection, addDoc, onSnapshot } from "firebase/firestore";
 
-    const fetchProduct = async (barcode) =>{
-        try{
-            const res = await fetch(
-                `https://api.upcitemdb.com/prod/trial/lookup?upc=${barcode}`
-            );
-            const data = await res.json();
-            if(data.items && data.items.length >0){
-                return {name: data.items[0].title, price: "", store: ""};
-            }
-            return null;
-        }
-        catch {
-            return null;
-        }
-    };
+function ShoppingList({ user }) {
+  const [products, setProducts] = useState([]);
+  const [scanning, setScanning] = useState(false);
+  const [newProductBarcode, setNewProductBarcode] = useState(null);
 
-    const handleScan = async (barcode) => {
-        setScanning(false);
-        const existing = products.find((p) => p.barcode === barcode);
-        if(existing){
-            alert(
-                `Item already scanned!\nName: ${existing.name}\nPrice: ${existing.price}\nStore: ${existing.store}`
-            );
-            return;
-        }
+  useEffect(() => {
+    if (!user) return;
 
-        const product = await fetchProduct(barcode);
-        if(!product){
-            setNewProductBarcode(barcode);
-        }
-        else{
-            setProducts((prev) => [...prev, {barcode, ...product}]);
-        }
-    };
+    const productsRef = collection(db, "users", user.uid, "items");
 
-    const handleAddProduct = (product)=> {
-        setProducts((prev) => [...prev, product]);
-        setNewProductBarcode(null);
-    };
+    const unsubscribe = onSnapshot(productsRef, (snapshot) => {
+      const loadedProducts = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setProducts(loadedProducts);
+    });
 
-    const handleCancel = () =>{
-        setNewProductBarcode(null);
-    };
+    return () => unsubscribe();
+  }, [user]);
 
-   
+  const fetchProduct = async (barcode) => {
+    try {
+      const res = await fetch(
+        `https://api.upcitemdb.com/prod/trial/lookup?upc=${barcode}`
+      );
+      const data = await res.json();
+      if (data.items && data.items.length > 0) {
+        return { name: data.items[0].title, price: "", store: "", barcode };
+      }
+      return null;
+    } catch {
+      return null;
+    }
+  };
 
+  const saveProductToFirebase = async (product) => {
+    try {
+      await addDoc(collection(db, "users", user.uid, "items"), product);
+    } catch (err) {
+      console.error("Error saving product:", err);
+    }
+  };
 
+  const handleScan = async (barcode) => {
+    setScanning(false);
+    const existing = products.find((p) => p.barcode === barcode);
+    if (existing) {
+      alert(
+        `Item already scanned!\nName: ${existing.name}\nPrice: ${existing.price}\nStore: ${existing.store}`
+      );
+      return;
+    }
 
-    return(
+    const product = await fetchProduct(barcode);
+    if (!product) {
+      setNewProductBarcode(barcode);
+    } else {
+      saveProductToFirebase(product);
+    }
+  };
 
-        <div className="page-container">
+  const handleAddProduct = (product) => {
+    saveProductToFirebase(product);
+    setNewProductBarcode(null);
+  };
 
-            <h2 className="page-title">Shopping List</h2>
+  const handleCancel = () => {
+    setNewProductBarcode(null);
+  };
 
-            {newProductBarcode && (
-                <NewProductForm 
-                barcode={newProductBarcode !== "manual" ? newProductBarcode : ""}
-                onSubmit={handleAddProduct}
-                onCancel={handleCancel}/>
-            )}
+  return (
+    <div className="page-container">
+      <h2 className="page-title">Shopping List</h2>
 
+      {newProductBarcode && (
+        <NewProductForm
+          barcode={newProductBarcode !== "manual" ? newProductBarcode : ""}
+          onSubmit={handleAddProduct}
+          onCancel={handleCancel}
+        />
+      )}
 
-
-
-            {scanning && (
-                <div style={{marginTop: "10px"}}>
-                    <BarcodeScanner
-                    onUpdate={(err, result)=>{
-                        if(result) handleScan(result.text);
-                    }}
-                    width={400}
-                    />
-                    </div>
-            )}
-
-            <div className="items-container">
-                {products.map((product, i) =>(
-                    <ProductCard 
-                    key={i} 
-                    name={product.name}
-                    price={product.price}
-                    store={product.store}
-                    image={product.image}
-                     />
-                ))}
-            </div>
-
-            <AddButton onScan={() => setScanning(true)} onManual={() => setNewProductBarcode("manual")}/>
+      {scanning && (
+        <div style={{ marginTop: "10px" }}>
+          <BarcodeScanner
+            onUpdate={(err, result) => {
+              if (result) handleScan(result.text);
+            }}
+            width={400}
+          />
         </div>
-    );
+      )}
+
+      <div className="items-container">
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            name={product.name}
+            price={product.price}
+            store={product.store}
+            image={product.image}
+          />
+        ))}
+      </div>
+
+      <AddButton
+        onScan={() => setScanning(true)}
+        onManual={() => setNewProductBarcode("manual")}
+      />
+    </div>
+  );
 }
 
 export default ShoppingList;

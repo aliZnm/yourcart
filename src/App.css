@@ -23,7 +23,7 @@ body{
 
 html, body{
   min-width: 720px;
-  overflow-x: auto;
+  overflow-x: hidden;
 
 }
 
@@ -213,10 +213,11 @@ html, body{
 
 
 .add-button {
-  position: absolute;
-  bottom: 90px;
+  position: fixed;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
+
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -234,14 +235,15 @@ html, body{
 
   transition:
     transform 0.25s ease,
-    box-shadow 0.25s ease,
     background-color 0.25s ease;
+
+  z-index: 1000;
 }
 
 .add-button:hover {
-  transform: translateX(-50%) scale(1.12); 
-  background-color: #6668ea;                 
+  transform: translateX(-50%) scale(1.12);
 }
+
 
 
 

@@ -4,7 +4,7 @@ import SignupForm from "./components/SignupForm";
 import ShoppingList from "./components/ShoppingList";
 import './App.css';
 import Navbar from "./components/Navbar";
-const devMode = true;
+const devMode = false;
 
 function App() {
   const [user, setUser] = useState(null);

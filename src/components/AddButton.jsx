@@ -40,14 +40,14 @@ function AddButton({onScan, onManual}){
         className="add-button-wrapper"
         ref={wrapperRef}
         style={{
-          position: "absolute",
-          bottom: "90px",
+          position: "fixed",
+          bottom: "40px",
           left: "50%",
           transform: "translateX(-50%)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          zIndex: 20, // above dim background
+          zIndex: 100, 
         }}
       >
         <button
