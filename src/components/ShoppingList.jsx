@@ -10,7 +10,7 @@ function ShoppingList({ user }) {
   const [products, setProducts] = useState([]);
   const [scanning, setScanning] = useState(false);
   const [newProductBarcode, setNewProductBarcode] = useState(null);
-
+  const [scannedImage, setScannedImage] = useState("");
   useEffect(() => {
     if (!user) return;
 
@@ -33,9 +33,17 @@ function ShoppingList({ user }) {
         `https://api.upcitemdb.com/prod/trial/lookup?upc=${barcode}`
       );
       const data = await res.json();
+
       if (data.items && data.items.length > 0) {
-        return { name: data.items[0].title, price: "", store: "", barcode };
-      }
+        const item = data.items[0];
+        return{
+          barcode,
+          name: item.title || "",
+          price: "",
+          store: "",
+          image: item.images?.[0] || "",
+        };
+            }
       return null;
     } catch {
       return null;
@@ -62,8 +70,12 @@ function ShoppingList({ user }) {
 
     const product = await fetchProduct(barcode);
     if (!product) {
+      setScannedImage("");
       setNewProductBarcode(barcode);
-    } else {
+    } else if(!product.name) {
+      setScannedImage(product.image || "");
+      setNewProductBarcode(barcode);
+    } else{
       saveProductToFirebase(product);
     }
   };
@@ -85,6 +97,7 @@ function ShoppingList({ user }) {
       {newProductBarcode && (
         <NewProductForm
           barcode={newProductBarcode !== "manual" ? newProductBarcode : ""}
+          scannedImage={scannedImage}
           onSubmit={handleAddProduct}
           onCancel={handleCancel}
         />

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function NewProductForm({barcode, onSubmit, onCancel}){
+function NewProductForm({barcode, scannedImage, onSubmit, onCancel}){
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [store, setStore] = useState("");
@@ -8,8 +8,14 @@ function NewProductForm({barcode, onSubmit, onCancel}){
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        if(!name)return;
-        onSubmit({barcode, name, price, store, image});
+        if (!name) return;
+        onSubmit({
+            barcode, 
+            name, 
+            price, 
+            store, 
+            image: image || scannedImage || "",
+        });
     };
 
 
@@ -55,6 +61,22 @@ function NewProductForm({barcode, onSubmit, onCancel}){
                 <h3 className="modal-title" style={{ textAlign: "center", marginBottom: "15px" }}>Add Item</h3>
 
                 <form onSubmit={handleSubmit} className="modal-form" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                    
+                    {(image || scannedImage) && (
+                        <img 
+                        src={image || scannedImage}
+                        alt="Product Preview"
+                        style={{
+                            width: "100%",
+                            maxHeight: "180px",
+                            objectFit: "contain",
+                            borderRadius: "8px",
+                            background: "#fff",
+                            padding: "6px",
+                        }}
+                        />
+                    )}
+                    
                     <input
                         type="text"
                         placeholder="Product Name"
