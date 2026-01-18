@@ -54,7 +54,8 @@ function NewProductForm({barcode, scannedImage, onSubmit, onCancel, initialData,
                         top: "50%",
                         left: "50%",
                         transform: "translate(-50%, -50%)",
-                        backgroundColor: "#5254d8",
+                        backgroundColor: "linear-gradient(135deg, #4b6cb7, #182848)",
+                        color: "white",
                         border: "2px solid black",
                         padding: "20px 30px",
                         borderRadius: "12px",
@@ -128,7 +129,7 @@ function NewProductForm({barcode, scannedImage, onSubmit, onCancel, initialData,
                         }
                     }} />
 
-                    <button type="submit" className="submit-btn" style={{ padding: "10px", borderRadius: "8px", backgroundColor: "#6b6df0", color: "#fff", fontWeight: "bold" }}>
+                    <button type="submit" className="submit-btn" style={{ padding: "10px", borderRadius: "8px", backgroundColor: "#4b6cb7", color: "white", color: "#fff", fontWeight: "bold" }}>
                         {isEditing ? "Edit" : "Add"}
                         </button>
                 </form>

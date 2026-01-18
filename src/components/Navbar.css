@@ -25,7 +25,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0f0c29;
+  background:  #182848;
   backdrop-filter: blur(8px);
   color: white;
   font-size: 22px;
@@ -34,6 +34,7 @@ body{
   top: 0;
   left: 0;
   z-index: 1000;
+  box-shadow: 0px 0px 10px 0px black;
 }
 
 .navbar-title{
@@ -68,7 +69,7 @@ body{
   right: 0;
   width: 260px;
   height: 100vh;
-  background: #0f0c29;
+  background: linear-gradient(135deg, #4b6cb7, #182848);
   backdrop-filter: blur(12px);
   padding: 20px;
   z-index: 2000;
@@ -112,11 +113,11 @@ body{
 }
 
 .slide-item.logout-btn{
-  color: rgb(187, 110, 110);
+  color: e67e7e;
 }
 
 .slide-item:hover {
-  background: rgb(151, 151, 199, 0.4);
+  background: rgba(255,255,255,0.1);
 }
 
 
@@ -127,7 +128,7 @@ body{
   transform: translateY(-50%);
   width: 35px;
   height: 45px;
-  background: #0f0c29;
+  background: #182848;
   border-radius: 6px 0 0 6px;
   cursor: pointer;
   transition: background 0.2s, opacity 0.2s;
