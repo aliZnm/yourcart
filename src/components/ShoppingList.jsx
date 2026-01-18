@@ -172,6 +172,17 @@ function ShoppingList({ user }) {
     setNewProductBarcode(null);
   };
 
+
+  const handleEditProduct = (id) =>{
+    const product = products.find(p => p.id === id);
+    console.log("Edit product:", product);
+  };
+
+  const handleDeleteProduct = async (id) => {
+    if(!window.confirm("Delete this product?")) return;
+    console.log("Delete product:", id);
+  };
+
   return (
     <>
     <div className="page-container">
@@ -235,6 +246,8 @@ function ShoppingList({ user }) {
             image={product.image}
             highlighted={highlightedId === product.id}
             dimmed={highlightedId && highlightedId !== product.id}
+            onEdit={handleEditProduct}
+            onDelete={handleDeleteProduct}
           />
         ))}
       </div>
