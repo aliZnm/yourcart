@@ -4,7 +4,7 @@ import BarcodeScanner from "react-qr-barcode-scanner";
 import ProductCard from "./productCard";
 import NewProductForm from "./NewProductForm";
 import { db } from "../firebase"; 
-import { collection, addDoc, onSnapshot, doc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc, updateDoc } from "firebase/firestore";
 
 function ShoppingList({ user }) {
   const [products, setProducts] = useState([]);
@@ -15,7 +15,8 @@ function ShoppingList({ user }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [notFound, setNotFound] = useState(false)
   const [searchMessage, setSearchMessage] = useState("");
-
+  const [deleteTarget, setDeleteTarget] = useState(null);
+  const [editingProduct, setEditingProduct] = useState(null);
 
   const spotlightProduct = (id) =>{
     setHighlightedId(id);
@@ -175,12 +176,12 @@ function ShoppingList({ user }) {
 
   const handleEditProduct = (id) =>{
     const product = products.find(p => p.id === id);
-    console.log("Edit product:", product);
+    setEditingProduct(product);
+    setNewProductBarcode("manual");
   };
 
-  const handleDeleteProduct = async (id) => {
-    if(!window.confirm("Delete this product?")) return;
-    console.log("Delete product:", id);
+  const handleDeleteProduct =  (id) => {
+    setDeleteTarget(id);
   };
 
   return (
@@ -215,12 +216,26 @@ function ShoppingList({ user }) {
 {searchMessage && <p style={{color: "green", marginBottom: "10px"}}>{searchMessage}</p>}
 {notFound && <p style={{ color: "red", marginBottom: "10px" }}>Not found</p>}
 
-      {newProductBarcode && (
+      {(newProductBarcode || editingProduct) && (
         <NewProductForm
-          barcode={newProductBarcode !== "manual" ? newProductBarcode : ""}
-          scannedImage={scannedImage}
-          onSubmit={handleAddProduct}
-          onCancel={handleCancel}
+          barcode={editingProduct?.barcode || newProductBarcode || ""}
+          scannedImage={editingProduct?.image || scannedImage}
+          initialData={editingProduct}
+          onSubmit={(product) =>{
+            if(editingProduct){
+            updateDoc(
+              doc(db, "users", user.uid, "items", editingProduct.id),
+              product
+            );
+            setEditingProduct(null);
+          } else{
+            handleAddProduct(product);
+          }
+        }}
+        onCancel={() =>{
+          setEditingProduct(null);
+          handleCancel();
+        }}
         />
       )}
 
@@ -257,7 +272,34 @@ function ShoppingList({ user }) {
         onScan={() => setScanning(true)}
         onManual={() => setNewProductBarcode("manual")}
       />
+
+      {deleteTarget && (
+        <div className="modal-box">
+          <h3>Delete Product?</h3>
+          <p>Are you sure you wnat to delte this product?</p>
+
+          <div style={{display: "flex", gap: "12px", marginTop: "20px"}}>
+            <button className="submit-btn" onClick={() => setDeleteTarget(null)}>
+              Cancel
+            </button>
+
+            <button 
+            className="submit-btn"
+            style={{background: "#192294", color: "#fff"}}
+            onClick={async () =>{
+              await deleteDoc(
+                doc(db, "users", user.uid, "items", deleteTarget)
+              );
+              setDeleteTarget(null);
+            }}>
+              Delete
+            </button>
+          </div>
+        </div>
+      )}
     </>
+
+    
   );
 }
 

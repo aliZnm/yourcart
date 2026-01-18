@@ -412,3 +412,77 @@ html, body{
   font-family: 'Segoe UI', sans-serif;
 
 }
+
+.product-menu {
+  position: absolute;
+  top: 38px;
+  right: 8px;
+
+  display: flex;
+  flex-direction: column;
+  width: 110px;
+
+  background: #dddeff;
+  border-radius: 10px;
+  overflow: hidden;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+
+  opacity: 0;
+  transform: scale(0.95) translateY(-5px);
+  pointer-events: none;
+
+  transition: 
+    opacity 0.18s ease,
+    transform 0.18s ease;
+
+  z-index: 20;
+}
+
+.product-menu.open {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+.product-menu button {
+  width: 100%;
+  height: 44px;
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  cursor: pointer;
+
+  display: flex;               
+  align-items: center;          
+  justify-content: center;      
+  text-align: center;          
+}
+
+
+.menu-btn {
+  flex: 1;
+  padding: 12px 0;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.menu-btn.edit,
+.menu-btn.delete {
+  background: #24243e;       
+  color: #cacada; 
+  font-weight: bold;
+  font-size: 15px;            
+}
+
+.menu-btn.edit:hover,
+.menu-btn.delete:hover {
+  background: #3d3d63;       
+}
+
+.menu-btn.delete {
+  color: rgb(199, 115, 115);               
+}

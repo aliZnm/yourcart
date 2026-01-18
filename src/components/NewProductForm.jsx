@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 
-function NewProductForm({barcode, scannedImage, onSubmit, onCancel}){
-    const [name, setName] = useState("");
-    const [price, setPrice] = useState("$0.00");
-    const [store, setStore] = useState("");
+function NewProductForm({barcode, scannedImage, onSubmit, onCancel, initialData}){
+    const [name, setName] = useState(initialData?.name || "");
+    const [price, setPrice] = useState(initialData?.price || "$0.00");
+    const [store, setStore] = useState(initialData?.store || "");
     const [image, setImage] = useState("");
     const nameInputRef = useRef(null);
 
