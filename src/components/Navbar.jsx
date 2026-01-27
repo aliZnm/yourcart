@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Navbar.css";
-
+import { arrowIcon } from '../assets/arrow-icon.png'
 export default function Navbar({user, onLogout, setPage}){
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -23,7 +23,7 @@ export default function Navbar({user, onLogout, setPage}){
             
             <div className="slide-close-btn"
             onClick={()=> setMenuOpen(false)}>
-                <img src="/src/assets/arrow-icon.png" style={{width: "30px"}} />
+                <img src={arrowIcon} style={{width: "30px"}} />
             </div>
             
             <h2 className="navbar-title" style={{marginTop: "10px", marginBottom:"40px", fontSize: "30px"}}>

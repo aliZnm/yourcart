@@ -2,6 +2,8 @@ import { auth, googleProvider, appleProvider } from "../firebase";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import { updateProfile } from "firebase/auth";
+import { googleLogo } from '../assets/google-png-logo.png'
+import { appleLogo } from '../assets/Apple_logo_white.svg.png'
 
 function SignupForm({setUser, toggleForm}){
     const [name, setName] = useState("");
@@ -62,11 +64,11 @@ function SignupForm({setUser, toggleForm}){
 
             <div className="social-login">
                 <button className="google-button" onClick={handleGoogleSignup}>Google
-                    <img className="logos" src="/src/assets/google-png-logo.png" />
+                    <img className="logos" src={googleLogo} />
                 </button>
 
                 <button className="apple-button" onClick={handleAppleSignup}>Apple
-                    <img className="logos" src="/src/assets/Apple_logo_white.svg.png" />
+                    <img className="logos" src={appleLogo} />
                 </button>
             </div>
 

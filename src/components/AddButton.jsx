@@ -1,7 +1,7 @@
 import { Bold, Weight } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
-
-
+import { scanLogo } from '../assets/scan-logo.png'
+import { manualLogo } from '../assets/manual-logo.png'
 function AddButton({onScan, onManual}){
     
     const [open, setOpen] = useState(false);
@@ -77,7 +77,7 @@ function AddButton({onScan, onManual}){
             >
               <img
                 style={{ width: "30px" }}
-                src="/src/assets/scan-logo.png"
+                src={scanLogo}
               />
             </button>
 
@@ -90,7 +90,7 @@ function AddButton({onScan, onManual}){
             >
               <img
                 style={{ width: "25px", marginLeft: "6px" }}
-                src="/src/assets/manual-logo.png"
+                src={manualLogo}
               />
             </button>
           </div>
