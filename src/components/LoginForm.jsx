@@ -1,8 +1,8 @@
 import { auth, googleProvider, appleProvider } from "../firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
-import { googleLogo } from '../assets/google-png-logo.png'
-import { appleLogo } from '../assets/Apple_logo_white.svg.png'
+import googleLogo from '../assets/google-png-logo.png'
+import appleLogo from '../assets/Apple_logo_white.svg.png'
 
 export default function LoginForm({setUser, toggleForm}){
     const [email, setEmail] = useState("");

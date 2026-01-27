@@ -6,7 +6,7 @@ import './App.css';
 import Navbar from "./components/Navbar";
 import SettingsPage from "./components/SettingsPage";
 import AccountInfoPage from "./components/AccountInfoPage";
-const devMode = false;
+const devMode = true;
 
 function App() {
   const [user, setUser] = useState(null);

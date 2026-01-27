@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Navbar.css";
-import { arrowIcon } from '../assets/arrow-icon.png'
+import arrowIcon from '../assets/arrow-icon.png'
 export default function Navbar({user, onLogout, setPage}){
     const [menuOpen, setMenuOpen] = useState(false);
 

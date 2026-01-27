@@ -1,7 +1,7 @@
 import { Bold, Weight } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
-import { scanLogo } from '../assets/scan-logo.png'
-import { manualLogo } from '../assets/manual-logo.png'
+import scanLogo  from '../assets/scan-logo.png'
+import manualLogo from '../assets/manual-logo.png'
 function AddButton({onScan, onManual}){
     
     const [open, setOpen] = useState(false);

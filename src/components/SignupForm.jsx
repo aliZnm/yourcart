@@ -2,8 +2,8 @@ import { auth, googleProvider, appleProvider } from "../firebase";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import { updateProfile } from "firebase/auth";
-import { googleLogo } from '../assets/google-png-logo.png'
-import { appleLogo } from '../assets/Apple_logo_white.svg.png'
+import googleLogo from '../assets/google-png-logo.png'
+import appleLogo from '../assets/Apple_logo_white.svg.png'
 
 function SignupForm({setUser, toggleForm}){
     const [name, setName] = useState("");
