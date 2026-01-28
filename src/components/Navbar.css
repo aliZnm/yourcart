@@ -1,3 +1,5 @@
+
+
 /*
 
 Lightest
@@ -54,8 +56,6 @@ body{
 .navbar-account-icon {
   width: 37px;
   height: 37px;
-  background-image: url("src/assets/account-logo1.png");
-  background-size: cover;
   transition: background-image 0.4s ease;
 }
 
