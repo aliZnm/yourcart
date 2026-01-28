@@ -22,7 +22,10 @@ background: linear-gradient(to bottom, #4b6cb7, #182848);
 }
 
 html, body{
-  min-width: 720px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
 
 }
@@ -31,7 +34,7 @@ html, body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: fit-content;
+  width: 90%;
   max-width: 400px;
   margin: 200px auto;
   padding: 50px;
@@ -246,7 +249,7 @@ html, body{
 .items-container {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 16px;
   padding: 10px;
   box-sizing: border-box;
@@ -507,4 +510,30 @@ html, body{
   
   background-color: #c04545;               
   color: rgb(234, 227, 227);
+}
+
+
+@media (max-width: 600px){
+  html, body{
+    overflow-x: hidden;
+  }
+
+  .items-container{
+    grid-template-columns: 1fr;
+  }
+
+  .auth-container{
+    width: 90%;
+    margin: 100px auto;
+    padding: 30px;
+  }
+
+  .page-container{
+    width: 95%;
+    margin: 80px auto;
+  }
+
+  .slide-item{
+    width: 100%;
+  }
 }

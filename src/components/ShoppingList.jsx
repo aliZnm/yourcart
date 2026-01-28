@@ -261,7 +261,7 @@ function ShoppingList({ user }) {
             onUpdate={(err, result) => {
               if (result) handleScan(result.text);
             }}
-            width={400}
+           
           />
         </div>
       )}
