@@ -6,6 +6,9 @@ import './App.css';
 import Navbar from "./components/Navbar";
 import SettingsPage from "./components/SettingsPage";
 import AccountInfoPage from "./components/AccountInfoPage";
+import { getRedirectResult } from "firebase/auth";
+import { auth } from "./firebase";
+
 const devMode = false;
 
 function App() {
@@ -21,6 +24,19 @@ useEffect(() =>{
     });
   }
 }, []);
+
+useEffect(() => {
+  getRedirectResult(auth)
+    .then(result => {
+      if (result?.user) {
+        setUser(result.user);
+      }
+    })
+    .catch(err => {
+      console.error("Google redirect login error:", err);
+    });
+}, []);
+
   return(
     <>
 

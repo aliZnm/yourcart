@@ -1,5 +1,5 @@
 import { auth, googleProvider } from "../firebase";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup, signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { useState } from "react";
 import { updateProfile } from "firebase/auth";
 import googleLogo from '../assets/google-png-logo.png'
@@ -29,10 +29,15 @@ function SignupForm({setUser, toggleForm}){
 
     const handleGoogleSignup = async() =>{
         try{
-            const result = await signInWithPopup(auth, googleProvider);
-            setUser(result.user);
-        }
-        catch(err){
+            const isMobile = /iPhone|iPad|Ipod|Android/i.test(navigator.userAgent);
+
+            if(isMobile){
+                await signInWithRedirect(auth, googleProvider);
+            } else{
+                const result = await signInWithPopup(auth, googleProvider);
+                setUser(result.user);
+            }
+        } catch (err){
             setError(err.message);
         }
     };
