@@ -2,6 +2,7 @@ import { auth, googleProvider } from "../firebase";
 import { signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { useState } from "react";
 import googleLogo from '../assets/google-png-logo.png'
+import { sendPasswordResetEmail } from "firebase/auth";
 
 export default function LoginForm({setUser, toggleForm}){
     const [email, setEmail] = useState("");
@@ -34,6 +35,20 @@ export default function LoginForm({setUser, toggleForm}){
            }
        };
 
+       const handelForgotPassword = async () => {
+        if (!email){
+            setError("Please enter your email first");
+            return;
+        }
+
+        try{
+            await sendPasswordResetEmail(auth, email);
+            alert("Password reset email sent. Check spam folder.")
+        } catch(err){
+            setError(err.message);
+        }
+       };
+
 
     return(
         <div className="auth-container">
@@ -44,6 +59,17 @@ export default function LoginForm({setUser, toggleForm}){
                 {error && <p>{error}</p>}
                 <button type="submit">Login</button>
             </form>
+            <p>
+                <button
+                type="button"
+                onClick={handelForgotPassword}
+                style={{fontSize: " 13px"}}>
+                    Forgot password?
+                </button>
+            </p>
+            <p style={{color: " #98b0e9"}}>
+                ----------- OR -----------
+            </p>
 
             <div className="social-login">
                 <button className="google-button" onClick={handleGoogleLogin}>Google
