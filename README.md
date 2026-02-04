@@ -71,6 +71,28 @@ Firestore security rules are configured so that:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/yourcart.git
+   git clone https://github.com/your-username/yourcart.git](https://github.com/aliZnm/yourcart.git
+2. Install dependencies:
+   ```bash
+   npm install
+3. Create a Firebase project and enable:
+   - Firebase Authentication
+   - Firestore Database
+4. Add your Firebase configuration to a .env file
+5. Start the development server:
+   ```bash
+   npm run dev
 
+---
 
+## Future Improvements
+
+```md
+- Product price tracking and history
+- Categories and tags for products
+- Notifications for price changes
+- Improved UI/UX and animations
+- Mobile app version
+```
+## Author
+Built by Abdulrahman Ali  
