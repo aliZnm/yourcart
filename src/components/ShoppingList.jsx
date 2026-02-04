@@ -44,7 +44,7 @@ function ShoppingList({ user }) {
 
     if(match){
       spotlightProduct(match.id);
-      setSearchMessage("Product already exists.");
+      setSearchMessage("Product exists.");
       setNotFound(false);
     } else{
       setSearchMessage("");
@@ -213,7 +213,7 @@ function ShoppingList({ user }) {
   />
   
 </form>
-{searchMessage && <p style={{color: "green", marginBottom: "10px"}}>{searchMessage}</p>}
+{searchMessage && <p style={{color: "green", backgroundColor: "#d4fcd4", padding: "5px", borderRadius: "6px", width: "fit-content"}}>{searchMessage}</p>}
 {notFound && <p style={{ color: "red", marginBottom: "10px" }}>Not found</p>}
 
       {(newProductBarcode || editingProduct) && (
