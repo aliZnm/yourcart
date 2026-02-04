@@ -23,4 +23,4 @@ This project was built to practice and demonstrate real-world application develo
 <img src="./src/assets/signup-screenshot.jpg" width="300" />
 
 ### Dashboard
-<img src="./src/assets/dashbaord-screenshot.jpg" width="500" />
+<img src="./src/assets/dashbaord-screenshot.jpg" width="300" />
