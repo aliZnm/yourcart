@@ -59,9 +59,7 @@ body{
   transition: background-image 0.4s ease;
 }
 
-.navbar-account-btn:hover .navbar-account-icon{
-  background-image: url("src/assets/account-logo2.png");;
-}
+
 
 .navbar-slide-panel {
   position: fixed;
@@ -113,7 +111,7 @@ body{
 }
 
 .slide-item.logout-btn{
-  color: e67e7e;
+  color: #e67e7e;
 }
 
 .slide-item:hover {
