@@ -1,5 +1,5 @@
 import { auth, googleProvider } from "../firebase";
-import { signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import googleLogo from '../assets/google-png-logo.png'
 import { sendPasswordResetEmail } from "firebase/auth";
@@ -22,16 +22,10 @@ export default function LoginForm({setUser, toggleForm}){
 
        const handleGoogleLogin = async() =>{
            try{
-               const isMobile = /iPhone|iPad|Ipod|Android/i.test(navigator.userAgent);
-   
-               if(isMobile){
-                   await signInWithRedirect(auth, googleProvider);
-               } else{
-                   const result = await signInWithPopup(auth, googleProvider);
-                   setUser(result.user);
-               }
-           } catch (err){
-               setError(err.message);
+            const result = await signInWithPopup(auth, googleProvider);
+            setUser(result.user);
+           } catch(err){
+            setError(err.message);
            }
        };
 
