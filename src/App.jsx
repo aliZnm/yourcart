@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import LoginForm from "./components/LoginForm";
+import LoginForm from "./components/LoginPage"
 import SignupForm from "./components/SignupForm";
 import ShoppingList from "./components/ShoppingList";
 import './App.css';
