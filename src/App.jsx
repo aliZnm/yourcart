@@ -8,6 +8,7 @@ import SettingsPage from "./components/SettingsPage";
 import AccountInfoPage from "./components/AccountInfoPage";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { getRedirectResult } from "firebase/auth";
 import { signOut } from "firebase/auth";
 
 const devMode = false;
@@ -25,6 +26,22 @@ useEffect(() =>{
     });
   }
 }, []);
+
+
+useEffect(() => {
+  const handleRedirect = async () =>{
+    try{
+      const result = await getRedirectResult(auth);
+      if(result){
+        setUser(result.user);
+      }
+    } catch(error){
+      console.log("Redirect error:", error);
+    }
+  };
+
+  handleRedirect();
+}, [])
 
 
 useEffect(() => {
